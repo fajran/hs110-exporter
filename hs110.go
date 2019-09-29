@@ -5,6 +5,7 @@ import (
 	"encoding/binary"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"net"
 	"time"
 )
@@ -93,14 +94,14 @@ func send(ip string, payload []byte) (data []byte, err error) {
 	// 10 second timeout
 	conn, err := net.DialTimeout("tcp", ip+":9999", time.Duration(10)*time.Second)
 	if err != nil {
-		fmt.Println("Cannot connnect to plug:", err)
+		log.Printf("Cannot connnect to plug: %s", err)
 		data = nil
 		return
 	}
 	_, err = conn.Write(payload)
 	data, err = ioutil.ReadAll(conn)
 	if err != nil {
-		fmt.Println("Cannot read data from plug:", err)
+		log.Printf("Cannot read data from plug: %s", err)
 	}
 	return
 
