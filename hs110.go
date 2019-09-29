@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"encoding/binary"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"net"
 	"time"
@@ -105,10 +104,13 @@ func send(ip string, payload []byte) (data []byte, err error) {
 		return
 	}
 
-	data, err = ioutil.ReadAll(conn)
+	data = make([]byte, 2048)
+	n, err := conn.Read(data)
 	if err != nil {
 		log.Printf("Cannot read data from plug: %s", err)
 	}
+	data = data[:n]
+
 	return
 
 }
