@@ -1,6 +1,4 @@
-FROM golang:1.12-alpine AS build
-
-RUN apk add bash ca-certificates git
+FROM golang:1.12 AS build
 
 WORKDIR /go/src/github.com/fajran/hs110-exporter
 
