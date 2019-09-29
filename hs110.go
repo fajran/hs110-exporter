@@ -99,6 +99,12 @@ func send(ip string, payload []byte) (data []byte, err error) {
 		return
 	}
 	_, err = conn.Write(payload)
+	if err != nil {
+		log.Printf("Cannot write data to plug: %s", err)
+		data = nil
+		return
+	}
+
 	data, err = ioutil.ReadAll(conn)
 	if err != nil {
 		log.Printf("Cannot read data from plug: %s", err)
