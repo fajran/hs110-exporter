@@ -1,3 +1,6 @@
+//
+// This file is originated from https://github.com/sausheong/hs1xxplug
+//
 package main
 
 import (
