@@ -1,4 +1,4 @@
-package hs1xxplug
+package main
 
 import (
 	"bytes"
